@@ -6,8 +6,97 @@
     <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/hierarchy.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <link rel="stylesheet" href="st.css">
 </head>
 <body>
+<header><h1>Boston <span>Celtics</span> 2025-2026</h1></header>
+<!-- Chart code -->
+<script>
+    am5.ready(function() {
 
-</body>
-</html>
+// Create root element
+// https://www.amcharts.com/docs/v5/getting-started/#Root_element
+        var root = am5.Root.new("chartdiv");
+// Set themes
+// https://www.amcharts.com/docs/v5/concepts/themes/
+        root.setThemes([
+            am5themes_Animated.new(root)
+        ]);
+// Create wrapper container
+        var container = root.container.children.push(am5.Container.new(root, {
+            width: am5.percent(100),
+            height: am5.percent(100),
+            layout: root.verticalLayout
+        }));
+// Create series
+// https://www.amcharts.com/docs/v5/charts/hierarchy/#Adding
+        var series = container.children.push(am5hierarchy.ForceDirected.new(root, {
+            singleBranchOnly: false,
+            downDepth: 1,
+            initialDepth: 2,
+            valueField: "value",
+            categoryField: "name",
+            childDataField: "children",
+            centerStrength: 0.5
+        }));
+// Fill in with specific data
+// https://www.amcharts.com/docs/v5/charts/hierarchy/#Setting_data
+
+        var data = {
+            name: "Celtics",
+            children: [
+                { name: "B. Chisholm", value: 10 },
+                {
+                    name: "J. Mazzulla",
+                    children: [
+                        { name: "S. Cassell",    value: 8 },
+                        { name: "B. Sullivan",   value: 8 },
+                        { name: "D. Stoudamire", value: 8 },
+                        { name: "A. Miles",      value: 8 }
+                    ]
+                },
+                {
+                    name: "J. Brown",
+                    children: [
+                        { name: "S. Hauser",   value: 8 },
+                        { name: "J. Walsh",    value: 8 },
+                        { name: "H. González", value: 8 }
+                    ]
+                },
+                {
+                    name: "D. White",
+                    children: [
+                        { name: "B. Scheierman", value: 8 },
+                        { name: "M. Shulga",     value: 8 },
+                        { name: "J. Tonje",      value: 8 }
+                    ]
+                },
+                {
+                    name: "P. Pritchard",
+                    children: [{ name: "R. Harper Jr.", value: 8 }]
+                },
+                {
+                    name: "J. Tatum",
+                    children: [{ name: "A. Williams", value: 8 }]
+                },
+                {
+                    name: "N. Vucevic",
+                    children: [{ name: "L. Garza", value: 8 }]
+                },
+                { name: "N. Queta", value: 10 }
+            ]
+        };
+
+
+        series.data.setAll([data]);
+        series.set("selectedDataItem", series.dataItems[0]);
+
+
+
+
+
+    }); // end am5.ready()
+</script>
+
+<!-- HTML -->
+<div id="chartdiv"></div>
