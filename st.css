@@ -13,3 +13,18 @@ header h1 span { color: #BA9653; }
     width: 100%;
     height: calc(100vh - 56px);
 }
+* { box-sizing: border-box; margin: 0; }
+body { background: black; font-family: Arial, sans-serif; }
+header {
+    height: 56px;
+    background: darkgreen;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+header h1 { color: white; }
+header h1 span { color: #BA9653; }
+#chartdiv {
+    width: 100%;
+    height: calc(100vh - 56px);
+}
